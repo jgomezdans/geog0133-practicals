@@ -4,7 +4,7 @@
 from pathlib import Path
 import os
 from multiprocessing.pool import ThreadPool
-
+import time
 
 
     
@@ -36,13 +36,13 @@ def grab_data(url="http://www2.geog.ucl.ac.uk/~ucfajlg/geog0133_data/"):
             "NDVI_2004.tif", "NDVI_2005.tif", "NDVI_2006.tif", 
             "NDVI_2007.tif", "NDVI_2008.tif", "NDVI_2009.tif",
             "NDVI_2010.tif", "NDVI_2011.tif", "temp_2m.tif"]
-    print("Please wait while I get hold of the data")
+    print(f"{time.asctime():s} -> Please wait while I get hold of the data")
     if not os.path.exists("./data/"):
         os.mkdir("./data")
     urls = [f"{url:s}{f:s}" for f in fnames]
     results = ThreadPool(8).imap_unordered(fetch_url, urls)
     if len([file_no for file_no in results]) == len(fnames):
-        print("Successfully downloaded data!")
+        print(f"{time.asctime():s} -> Successfully downloaded data!")
      
 
 
