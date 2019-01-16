@@ -1,3 +1,5 @@
+<p><img src="https://github.com/profLewis/Geog2021_Coursework/blob/master/images/ucl_logo.png?raw=true" align="left" \><img src="https://www.nceo.ac.uk/wp-content/themes/nceo/assets/images/logos/img_logo_purple.svg" align="right" /></p>
+
 # GEOG0133 Terrestrial Carbon: modelling and monitoring
 ### J Gómez-Dans & P Lewis
 
