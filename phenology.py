@@ -3,10 +3,6 @@
 
 from pathlib import Path
 import os
-from multiprocessing.pool import ThreadPool
-import time
-
-
     
 import matplotlib.pyplot as plt
 import matplotlib.dates
@@ -20,29 +16,25 @@ import requests
 
 from pheno_utils import *
 
-def fetch_url(entry, destination="./data/"):
-    path = destination + entry.split("/")[-1]
-    uri = entry
-    if not os.path.exists(path):
-        r = requests.get(uri, stream=True)
-        if r.status_code == 200:
-            with open(path, 'wb') as f:
-                for chunk in r:
-                    f.write(chunk)
-    return path
 
-def grab_data(url="http://www2.geog.ucl.ac.uk/~ucfajlg/geog0133_data/"):
-    fnames=[ "NDVI_2001.tif", "NDVI_2002.tif", "NDVI_2003.tif", 
+def grab_data(url="https://www.dropbox.com/sh/6wt85sf0ubc9e8n/AACberbeIDG39yzjppNzhHMha?dl=0"):
+    fnames=["NDVI_2001.tif", "NDVI_2002.tif", "NDVI_2003.tif", 
             "NDVI_2004.tif", "NDVI_2005.tif", "NDVI_2006.tif", 
             "NDVI_2007.tif", "NDVI_2008.tif", "NDVI_2009.tif",
             "NDVI_2010.tif", "NDVI_2011.tif", "temp_2m.tif"]
     print(f"{time.asctime():s} -> Please wait while I get hold of the data")
     if not os.path.exists("./data/"):
         os.mkdir("./data")
-    urls = [f"{url:s}{f:s}" for f in fnames]
-    results = ThreadPool(8).imap_unordered(fetch_url, urls)
-    if len([file_no for file_no in results]) == len(fnames):
+    r = requests.get(url, stream=True)
+    if r.status_code == 200:
+        with open("./temporal.zip", 'wb') as f:
+            for chunk in r:
+                f.write(chunk)
+
+        zipper = zipfile.ZipFile("./temporal.zip")
+        zipper.extractall("./data/")
         print(f"{time.asctime():s} -> Successfully downloaded data!")
+    raise IOError("SOmething happened")
      
 
 
