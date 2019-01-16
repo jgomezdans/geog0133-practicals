@@ -1,0 +1,16 @@
+name: geog0133_env
+
+dependencies:
+    - python>=3.6
+    - jupyter
+    - pyephem
+    - gdal>=2.3.0
+    - libgdal>=2.3.0
+    - numpy
+    - scipy
+    - matplotlib
+    - ipywidgets
+    - pandas
+    - requests
+    - nbpresent
+    - jupyter_contrib_nbextensions
