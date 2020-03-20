@@ -3,6 +3,9 @@
 
 from pathlib import Path
 import os
+
+import time
+import zipfile
     
 import matplotlib.pyplot as plt
 import matplotlib.dates
@@ -17,7 +20,7 @@ import requests
 from pheno_utils import *
 
 
-def grab_data(url="https://www.dropbox.com/sh/6wt85sf0ubc9e8n/AACberbeIDG39yzjppNzhHMha?dl=0"):
+def grab_data(url="https://www.dropbox.com/sh/6wt85sf0ubc9e8n/AACberbeIDG39yzjppNzhHMha?dl=1"):
     fnames=["NDVI_2001.tif", "NDVI_2002.tif", "NDVI_2003.tif", 
             "NDVI_2004.tif", "NDVI_2005.tif", "NDVI_2006.tif", 
             "NDVI_2007.tif", "NDVI_2008.tif", "NDVI_2009.tif",
@@ -34,7 +37,6 @@ def grab_data(url="https://www.dropbox.com/sh/6wt85sf0ubc9e8n/AACberbeIDG39yzjpp
         zipper = zipfile.ZipFile("./temporal.zip")
         zipper.extractall("./data/")
         print(f"{time.asctime():s} -> Successfully downloaded data!")
-    raise IOError("SOmething happened")
      
 
 
