@@ -6,7 +6,7 @@ import zipfile
 import time
 import requests
 
-def grab_data(url="https://www.dropbox.com/sh/6wt85sf0ubc9e8n/AACberbeIDG39yzjppNzhHMha?dl=0"):
+def grab_data(url="https://www.dropbox.com/sh/6wt85sf0ubc9e8n/AACberbeIDG39yzjppNzhHMha?dl=1"):
 
     print(f"{time.asctime():s} -> Please wait while I get hold of the data")
     if not os.path.exists("./data/"):
@@ -21,5 +21,5 @@ def grab_data(url="https://www.dropbox.com/sh/6wt85sf0ubc9e8n/AACberbeIDG39yzjpp
     zipper.extractall("./data/")
     print(f"{time.asctime():s} -> Successfully downloaded data!")
 
-if __name__ == "__main__":    
+if __name__ == "__main__":
     grab_data()
