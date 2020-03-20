@@ -19,26 +19,8 @@ import requests
 
 from pheno_utils import *
 
-
-def grab_data(url="https://www.dropbox.com/sh/6wt85sf0ubc9e8n/AACberbeIDG39yzjppNzhHMha?dl=1"):
-    fnames=["NDVI_2001.tif", "NDVI_2002.tif", "NDVI_2003.tif", 
-            "NDVI_2004.tif", "NDVI_2005.tif", "NDVI_2006.tif", 
-            "NDVI_2007.tif", "NDVI_2008.tif", "NDVI_2009.tif",
-            "NDVI_2010.tif", "NDVI_2011.tif", "temp_2m.tif"]
-    print(f"{time.asctime():s} -> Please wait while I get hold of the data")
-    if not os.path.exists("./data/"):
-        os.mkdir("./data")
-    r = requests.get(url, stream=True)
-    if r.status_code == 200:
-        with open("./temporal.zip", 'wb') as f:
-            for chunk in r:
-                f.write(chunk)
-
-        zipper = zipfile.ZipFile("./temporal.zip")
-        zipper.extractall("./data/")
-        print(f"{time.asctime():s} -> Successfully downloaded data!")
+from grab_data import grab_data
      
-
 
 
 local_path = Path("./data/temp_2m.tif")
